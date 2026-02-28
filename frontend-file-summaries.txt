@@ -1,0 +1,5 @@
+{
+  "frontend/src/App.tsx": "Main app entry using TanStack Router with all 8 routes (splash, onboarding, home, routine, shop, community, profile, privacy), with the unused `redirect` import removed.",
+  "frontend/src/screens/ProfileScreen.tsx": "Full profile screen showing user avatar/stats, tier progress card, achievement badges grid (locked/unlocked), routine completion rates with weekly chart, wishlist grid, settings toggles (notifications/analytics/marketing), data privacy link, and account reset functionality.",
+  "frontend/src/screens/PrivacyPolicyScreen.tsx": "Privacy policy screen accessible from profile settings, displaying 8 detailed policy sections (data collection, usage, storage, GDPR rights, cookies, children's privacy, policy changes, contact), with a hero banner, key highlights grid, and prominent \"We never sell your data\" badge."
+}

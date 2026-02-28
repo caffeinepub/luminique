@@ -1,0 +1,310 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-zustand-based-global-state-management-system-with-four-stores-persisted-to-localstorage-1-userstore-with-fields-name-email-gender-agerange-skintype-skinconcerns-routinepreference-glowpoints-streak-beststreak-tier-totalroutinescompleted-hascompletedonboarding-2-routinestore-with-todaymorningsteps-todayeveningsteps-history-currentstreak-beststreak-and-actions-completemorningstep-id-completeeveningstep-id-completefullroutine-type-3-shopstore-with-products-array-cart-wishlist-and-actions-addtocart-removefromcart-togglewishlist-checkout-4-communitystore-with-posts-array-leaderboard-array-and-likepost-id-action",
+      "featureTitle": "Create a Zustand-based global state management system with four stores persisted to localStorage: (1) userStore with fields: name, email, gender, ageRange, skinType, skinConcerns, routinePreference, glowPoints, streak, bestStreak, tier, totalRoutinesCompleted, hasCompletedOnboarding; (2) routineStore with todayMorningSteps, todayEveningSteps, history, currentStreak, bestStreak, and actions completeMorningStep(id), completeEveningStep(id), completeFullRoutine(type); (3) shopStore with products array, cart, wishlist, and actions addToCart, removeFromCart, toggleWishlist, checkout; (4) communityStore with posts array, leaderboard array, and likePost(id) action.",
+      "files": [
+        "frontend/src/stores/communityStore.ts",
+        "frontend/src/stores/routineStore.ts",
+        "frontend/src/stores/shopStore.ts",
+        "frontend/src/stores/userStore.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-react-router-navigation-with-the-following-routes-splashscreen-onboarding-onboardingscreen-home-homescreen-routine-routinescreen-shop-shopscreen-community-communityscreen-profile-profilescreen-new-users-no-localstorage-profile-are-sent-to-onboarding-after-splash-returning-users-go-directly-to-home",
+      "featureTitle": "Implement React Router navigation with the following routes: `/` (SplashScreen), `/onboarding` (OnboardingScreen), `/home` (HomeScreen), `/routine` (RoutineScreen), `/shop` (ShopScreen), `/community` (CommunityScreen), `/profile` (ProfileScreen). New users (no localStorage profile) are sent to `/onboarding` after splash; returning users go directly to `/home`.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/BottomTabBar.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-splashscreen-at-with-an-animated-luminique-lotus-svg-logo-scale-fade-in-animation-the-tagline-glow-grow-bloom-an-animated-beige-to-lavender-gradient-background-and-auto-redirect-logic-after-2-5-seconds",
+      "featureTitle": "Build a SplashScreen at `/` with: an animated Luminique lotus SVG logo (scale + fade-in animation), the tagline 'Glow. Grow. Bloom.', an animated beige-to-lavender gradient background, and auto-redirect logic after 2.5 seconds.",
+      "files": [
+        "frontend/src/screens/SplashScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-multi-step-onboardingscreen-at-onboarding-with-8-steps-and-a-progress-indicator-steps-1-welcome-with-logo-and-get-started-cta-2-gender-selection-cards-male-female-others-3-age-range-cards-13-19-20-29-30-39-40-49-50-4-skin-type-cards-with-icons-normal-oily-dry-combination-sensitive-with-short-descriptions-5-multi-select-skin-concern-pills-acne-pigmentation-dullness-wrinkles-dark-circles-uneven-texture-redness-large-pores-6-routine-preference-cards-morning-evening-both-7-mock-ai-skin-scan-with-camera-frame-ui-analyzing-your-skin-progress-animation-mock-result-text-your-skin-appears-combination-with-mild-pigmentation-and-skip-option-8-profile-creation-with-name-input-email-input-continue-with-email-button-mock-continue-with-google-button-and-privacy-note-we-never-sell-your-data-each-step-slides-in-out-with-animation-all-collected-data-is-saved-to-userstore-and-localstorage",
+      "featureTitle": "Build a multi-step OnboardingScreen at `/onboarding` with 8 steps and a progress indicator. Steps: (1) Welcome with logo and 'Get Started' CTA; (2) Gender selection cards — Male/Female/Others; (3) Age range cards — 13–19, 20–29, 30–39, 40–49, 50+; (4) Skin type cards with icons — Normal, Oily, Dry, Combination, Sensitive with short descriptions; (5) Multi-select skin concern pills — Acne, Pigmentation, Dullness, Wrinkles, Dark Circles, Uneven Texture, Redness, Large Pores; (6) Routine preference cards — 🌅 Morning, 🌙 Evening, ✨ Both; (7) Mock AI skin scan with camera frame UI, 'Analyzing your skin...' progress animation, mock result text ('Your skin appears Combination with mild Pigmentation'), and skip option; (8) Profile creation with name input, email input, 'Continue with Email' button, mock 'Continue with Google' button, and privacy note 'We never sell your data 🔒'. Each step slides in/out with animation. All collected data is saved to userStore and localStorage.",
+      "files": [
+        "frontend/src/screens/OnboardingScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-homescreen-at-home-with-1-a-time-aware-greeting-header-good-morning-afternoon-evening-name-with-a-glowpoints-badge-with-flame-icon-top-right-2-a-flower-visual-state-engine-showing-an-animated-svg-css-flower-with-four-states-based-on-streak-seed-0-2-days-your-journey-begins-bud-3-6-days-growing-beautifully-bloom-7-days-you-re-blooming-keep-glowing-withered-missed-your-flower-needs-care-with-smooth-css-transitions-and-a-pulsing-glow-animation-on-bloom-3-a-streak-counter-showing-the-streak-number-with-fire-emoji-day-streak-label-and-a-7-day-calendar-strip-with-filled-empty-circles-4-quick-action-cards-for-complete-morning-routine-and-complete-evening-routine-with-one-tap-completion-checkmark-confetti-animation-and-web-audio-api-chime-5-a-today-s-tip-card-with-rotating-skincare-tips-based-on-user-s-skin-type-6-a-glowpoints-summary-card-showing-current-points-tier-badge-and-progress-bar-to-next-tier",
+      "featureTitle": "Build the HomeScreen at `/home` with: (1) A time-aware greeting header ('Good morning/afternoon/evening, [Name] ✨') with a GlowPoints badge with flame icon top-right; (2) A Flower Visual State Engine showing an animated SVG/CSS flower with four states based on streak — Seed (0–2 days, 🌱, 'Your journey begins...'), Bud (3–6 days, 🌿, 'Growing beautifully!'), Bloom (7+ days, 🌸, 'You're blooming! Keep glowing!'), Withered (missed, 🥀, 'Your flower needs care...') — with smooth CSS transitions and a pulsing glow animation on Bloom; (3) A streak counter showing the streak number with fire emoji, 'Day streak' label, and a 7-day calendar strip with filled/empty circles; (4) Quick action cards for 'Complete Morning Routine' and 'Complete Evening Routine' with one-tap completion, checkmark + confetti animation, and Web Audio API chime; (5) A Today's Tip card with rotating skincare tips based on user's skin type; (6) A GlowPoints Summary card showing current points, tier badge, and progress bar to next tier.",
+      "files": [
+        "frontend/src/components/GlowPointsBadge.tsx",
+        "frontend/src/screens/HomeScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-flowerengine-component-with-four-animated-svg-css-states-seed-rounded-mound-earth-brown-tones-bud-stem-with-small-closed-bud-soft-green-gentle-sway-css-keyframe-animation-rotating-2deg-to-2deg-bloom-full-lotus-flower-in-brand-purples-lavenders-pulse-glow-keyframe-animation-scaling-1-1-05-1-with-glow-shadow-and-withered-drooping-flower-desaturated-droop-animation-with-translatey-opacity-reduction-transitions-between-states-must-be-smooth",
+      "featureTitle": "Create the FlowerEngine component with four animated SVG/CSS states: Seed (rounded mound, earth-brown tones), Bud (stem with small closed bud, soft green, gentle-sway CSS keyframe animation rotating -2deg to 2deg), Bloom (full lotus flower in brand purples/lavenders, pulse-glow keyframe animation scaling 1→1.05→1 with glow shadow), and Withered (drooping flower, desaturated, droop animation with translateY + opacity reduction). Transitions between states must be smooth.",
+      "files": [
+        "frontend/src/components/FlowerEngine.tsx",
+        "frontend/src/utils/getFlowerState.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-routinescreen-at-routine-with-1-a-full-month-calendar-view-with-dots-below-dates-indicating-morning-evening-completion-current-day-highlighted-2-morning-routine-section-with-steps-cleanser-toner-serum-moisturizer-spf-each-with-a-checkbox-step-name-tap-to-complete-interaction-and-overall-completion-percentage-3-evening-routine-section-with-steps-makeup-remover-cleanser-toner-serum-night-cream-same-checkbox-system-4-a-streak-stats-card-showing-current-streak-best-streak-total-days-completed-and-a-7-bar-weekly-completion-chart-5-a-log-history-list-showing-last-7-entries",
+      "featureTitle": "Build the RoutineScreen at `/routine` with: (1) A full month calendar view with dots below dates indicating morning ☀️ / evening 🌙 completion, current day highlighted; (2) Morning routine section with steps — Cleanser → Toner → Serum → Moisturizer → SPF — each with a checkbox, step name, tap-to-complete interaction, and overall completion percentage; (3) Evening routine section with steps — Makeup Remover → Cleanser → Toner → Serum → Night Cream — same checkbox system; (4) A Streak Stats card showing current streak, best streak, total days completed, and a 7-bar weekly completion chart; (5) A log history list showing last 7 entries.",
+      "files": [
+        "frontend/src/screens/RoutineScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-shopscreen-at-shop-with-1-header-with-glow-shop-title-cart-icon-with-item-count-badge-and-wishlist-icon-2-filter-chips-all-for-my-skin-serums-cleansers-moisturizers-spf-toners-plus-secondary-skin-type-filter-pills-3-personalized-for-you-featured-banner-with-2-3-recommended-product-cards-based-on-user-s-skin-type-4-a-2-column-product-grid-with-all-12-products-cerave-hydrating-cleanser-799-4-5-minimalist-niacinamide-10-599-4-7-dot-key-vitamin-c-serum-1299-4-4-plum-green-tea-moisturizer-649-4-3-biotique-bio-coconut-spf-40-399-4-2-the-ordinary-retinol-1499-4-6-lakme-sun-expert-spf-50-349-4-1-neutrogena-hydro-boost-1199-4-8-mamaearth-turmeric-face-wash-299-4-2-wow-skin-10-in-1-serum-899-4-4-kama-ayurveda-rose-water-549-4-6-forest-essentials-night-cream-2199-4-7-each-card-has-gradient-placeholder-image-name-price-star-rating-skin-type-badge-heart-wishlist-toggle-add-to-cart-button-and-conditional-best-seller-20-off-recommended-badges-5-product-detail-modal-with-full-info-ingredient-highlights-3-mock-reviews-quantity-selector-add-to-cart-and-wishlist-6-slide-up-cart-drawer-with-items-list-quantity-controls-subtotal-apply-glowpoints-discount-toggle-and-proceed-to-checkout-7-checkout-modal-with-mock-address-form-payment-method-selection-card-upi-cod-order-summary-and-place-order-button-triggering-success-animation-with-confetti",
+      "featureTitle": "Build the ShopScreen at `/shop` with: (1) Header with 'Glow Shop' title, cart icon with item count badge, and wishlist icon; (2) Filter chips — All, For My Skin, Serums, Cleansers, Moisturizers, SPF, Toners — plus secondary skin type filter pills; (3) '✨ Personalized for you' featured banner with 2–3 recommended product cards based on user's skin type; (4) A 2-column product grid with all 12 products (CeraVe Hydrating Cleanser ₹799 4.5★, Minimalist Niacinamide 10% ₹599 4.7★, Dot & Key Vitamin C Serum ₹1299 4.4★, Plum Green Tea Moisturizer ₹649 4.3★, Biotique Bio Coconut SPF 40 ₹399 4.2★, The Ordinary Retinol ₹1499 4.6★, Lakme Sun Expert SPF 50 ₹349 4.1★, Neutrogena Hydro Boost ₹1199 4.8★, Mamaearth Turmeric Face Wash ₹299 4.2★, WOW Skin 10-in-1 Serum ₹899 4.4★, Kama Ayurveda Rose Water ₹549 4.6★, Forest Essentials Night Cream ₹2199 4.7★); each card has gradient placeholder image, name, price, star rating, skin type badge, heart wishlist toggle, 'Add to Cart' button, and conditional BEST SELLER / 20% OFF / ✨ Recommended badges; (5) Product detail modal with full info, ingredient highlights, 3 mock reviews, quantity selector, add to cart and wishlist; (6) Slide-up cart drawer with items list, quantity controls, subtotal, 'Apply GlowPoints' discount toggle, and 'Proceed to Checkout'; (7) Checkout modal with mock address form, payment method selection (Card/UPI/COD), order summary, and 'Place Order' button triggering success animation with confetti.",
+      "files": [
+        "frontend/src/data/products.ts",
+        "frontend/src/screens/ShopScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-communityscreen-at-community-with-1-header-with-glow-community-title-and-a-compose-post-button-2-trending-products-horizontal-scroll-section-3-a-feed-with-5-pre-seeded-mock-posts-priya-glows-glowpro-28-days-127-likes-skincare-sid-glowup-12-days-89-likes-ayesha-beauty-glowpro-45-days-234-likes-rohit-skincare-starter-7-days-45-likes-divya-glow-glowup-19-days-156-likes-each-card-showing-gradient-avatar-with-initials-username-streak-badge-tier-badge-post-content-like-toggle-with-animation-and-comment-count-4-an-achievement-sharing-card-for-generating-a-shareable-achievement-card-5-a-top-glowachievers-this-week-leaderboard-showing-top-5-users-with-streak-and-points-with-the-current-user-s-rank-highlighted",
+      "featureTitle": "Build the CommunityScreen at `/community` with: (1) Header with 'Glow Community' title and a compose/post button; (2) '🔥 Trending Products' horizontal scroll section; (3) A feed with 5 pre-seeded mock posts — @priya_glows (GlowPro, 🔥28 days, 127 likes), @skincare_sid (GlowUp, 🔥12 days, 89 likes), @ayesha.beauty (GlowPro, 🔥45 days, 234 likes), @rohit_skincare (Starter, 🔥7 days, 45 likes), @divya.glow (GlowUp, 🔥19 days, 156 likes) — each card showing gradient avatar with initials, username, streak badge, tier badge, post content, like toggle with animation, and comment count; (4) An 'Achievement Sharing' card for generating a shareable achievement card; (5) A '🏆 Top GlowAchievers This Week' leaderboard showing top 5 users with streak and points, with the current user's rank highlighted.",
+      "files": [
+        "frontend/src/data/mockPosts.ts",
+        "frontend/src/screens/CommunityScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-profilescreen-at-profile-with-1-profile-header-showing-gradient-avatar-circle-with-initials-name-email-member-since-date-and-edit-profile-button-2-stats-grid-total-glowpoints-current-streak-routines-completed-products-reviewed-3-tier-card-showing-current-tier-badge-points-progress-bar-and-next-tier-at-x-points-label-4-achievements-section-with-badge-grid-first-streak-7-days-full-bloom-30-days-first-review-first-purchase-glowpro-tier-top-achiever-locked-badges-shown-grayed-out-5-my-routines-summary-with-morning-evening-completion-rates-and-weekly-chart-6-wishlist-grid-of-saved-products-7-settings-section-with-notification-preference-toggles-privacy-settings-data-privacy-link-and-a-prominent-we-never-sell-your-data-badge-8-an-accessible-privacy-policy-sub-screen-with-full-privacy-policy-text-data-usage-explanation-and-gdpr-data-rights-section",
+      "featureTitle": "Build the ProfileScreen at `/profile` with: (1) Profile header showing gradient avatar circle with initials, name, email, member since date, and edit profile button; (2) Stats grid — Total GlowPoints, Current Streak, Routines Completed, Products Reviewed; (3) Tier card showing current tier badge, points progress bar, and 'Next: [tier] at [X] points' label; (4) Achievements section with badge grid — 🔥 First Streak (7 days), 🌸 Full Bloom (30 days), ⭐ First Review, 🛍️ First Purchase, 👑 GlowPro Tier, 💎 Top Achiever — locked badges shown grayed out; (5) My Routines Summary with morning/evening completion rates and weekly chart; (6) Wishlist grid of saved products; (7) Settings section with notification preference toggles, privacy settings, 'Data Privacy' link, and a prominent 'We never sell your data 🔒' badge; (8) An accessible Privacy Policy sub-screen with full privacy policy text, data usage explanation, and GDPR/data rights section.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/screens/PrivacyPolicyScreen.tsx",
+        "frontend/src/screens/ProfileScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-gamification-logic-1-glowpoints-awards-10-for-completing-morning-routine-10-for-completing-evening-routine-5-bonus-for-completing-both-in-the-same-day-50-bonus-for-reaching-a-7-day-streak-15-for-writing-a-review-25-for-first-purchase-2-tier-calculation-starter-0-499-glowup-500-1499-glowpro-1500-3-flower-state-function-streak-0-previously-active-withered-streak-1-2-seed-streak-3-6-bud-streak-7-bloom-4-floating-10-text-animation-appearing-near-the-glowpoints-badge-when-points-are-earned-5-streak-counter-with-number-roll-animation-on-increment",
+      "featureTitle": "Implement the gamification logic: (1) GlowPoints awards — +10 for completing morning routine, +10 for completing evening routine, +5 bonus for completing both in the same day, +50 bonus for reaching a 7-day streak, +15 for writing a review, +25 for first purchase; (2) Tier calculation — Starter: 0–499, GlowUp: 500–1499, GlowPro: 1500+; (3) Flower state function — streak 0 (previously active): 'withered', streak 1–2: 'seed', streak 3–6: 'bud', streak 7+: 'bloom'; (4) Floating '+10' text animation appearing near the GlowPoints badge when points are earned; (5) Streak counter with number-roll animation on increment.",
+      "files": [
+        "frontend/src/utils/gamification.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-global-ui-effects-1-confetti-animation-using-css-particle-animation-with-20-30-particles-in-lavender-pink-mint-green-and-gold-falling-from-top-over-1-5-seconds-triggered-on-routine-completion-and-achievement-unlock-2-web-audio-api-chime-on-routine-completion-using-the-provided-oscillator-code-880hz-sine-wave-0-8s-decay-3-in-app-toast-notification-system-with-slide-in-from-top-animation-displaying-messages-time-for-your-morning-routine-don-t-break-your-x-day-streak-your-flower-needs-water-log-today-s-routine-new-personalized-products-just-for-you-you-re-close-to-glowpro-tier",
+      "featureTitle": "Implement global UI effects: (1) Confetti animation using CSS particle animation with 20–30 particles in lavender, pink, mint green, and gold falling from top over 1.5 seconds, triggered on routine completion and achievement unlock; (2) Web Audio API chime on routine completion using the provided oscillator code (880Hz sine wave, 0.8s decay); (3) In-app toast notification system with slide-in-from-top animation, displaying messages: '🌸 Time for your morning routine!', '🔥 Don't break your X-day streak!', '💧 Your flower needs water — log today's routine', '✨ New personalized products just for you', '🏆 You're close to GlowPro tier!'.",
+      "files": [
+        "frontend/src/components/Confetti.tsx",
+        "frontend/src/components/Toast.tsx",
+        "frontend/src/hooks/useToast.ts",
+        "frontend/src/utils/audioChime.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-all-page-and-ui-animations-1-page-transitions-fade-slide-up-between-routes-2-onboarding-step-transitions-slide-in-out-horizontally-3-card-hover-effect-slight-scale-up-with-elevated-shadow-4-tab-switch-transition-smooth-fade-5-cart-badge-bounce-animation-when-item-is-added-6-completion-checkmark-draw-animation-on-routine-step-completion-7-flower-state-morphing-smooth-transition-when-state-changes",
+      "featureTitle": "Implement all page and UI animations: (1) Page transitions — fade + slide-up between routes; (2) Onboarding step transitions — slide in/out horizontally; (3) Card hover effect — slight scale-up with elevated shadow; (4) Tab switch transition — smooth fade; (5) Cart badge bounce animation when item is added; (6) Completion checkmark draw animation on routine step completion; (7) Flower state morphing — smooth transition when state changes.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-full-luminique-design-system-consistently-across-all-screens-1-background-gradient-beige-f5e6d6-to-lavender-e8dff5-2-primary-purple-7b4bb7-deep-violet-5b2d91-soft-lavender-bca6e6-mint-green-7ed1b2-light-peach-ebcbb3-3-text-dark-111111-text-muted-6b6b8a-4-glass-morphism-cards-with-rgba-255-255-255-0-75-background-and-backdrop-blur-5-poppins-font-weights-300-700-loaded-from-google-fonts-6-max-width-430px-mobile-container-centered-on-desktop-with-a-subtle-phone-frame-shadow-7-bottom-safe-area-padding-for-the-tab-bar-8-minimum-44px-touch-targets-for-all-interactive-elements-9-no-horizontal-scroll-on-any-screen",
+      "featureTitle": "Apply the full Luminique design system consistently across all screens: (1) Background gradient: beige #F5E6D6 to lavender #E8DFF5; (2) Primary purple #7B4BB7, deep violet #5B2D91, soft lavender #BCA6E6, mint green #7ED1B2, light peach #EBCBB3; (3) Text dark #111111, text muted #6B6B8A; (4) Glass morphism cards with rgba(255,255,255,0.75) background and backdrop-blur; (5) Poppins font (weights 300–700) loaded from Google Fonts; (6) Max-width 430px mobile container centered on desktop with a subtle phone frame/shadow; (7) Bottom safe area padding for the tab bar; (8) Minimum 44px touch targets for all interactive elements; (9) No horizontal scroll on any screen.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-an-inline-svg-lotus-logo-component-logo-component-with-a-rounded-square-container-using-a-warm-beige-gradient-f2d8c2-ebcbb3-a-symmetrical-5-petal-lotus-flower-using-a-deep-violet-5b2d91-to-lavender-bca6e6-gradient-a-central-circular-core-with-lavender-highlight-two-mint-green-7ed1b2-leaves-beneath-the-flower-and-a-luminique-wordmark-in-poppins-medium-weight-dark-charcoal-111111",
+      "featureTitle": "Create an inline SVG lotus logo component (Logo component) with: a rounded square container using a warm beige gradient (#F2D8C2 → #EBCBB3); a symmetrical 5-petal lotus flower using a deep violet (#5B2D91) to lavender (#BCA6E6) gradient; a central circular core with lavender highlight; two mint green (#7ED1B2) leaves beneath the flower; and a 'luminique' wordmark in Poppins medium weight, dark charcoal #111111.",
+      "files": [
+        "frontend/src/components/Logo.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-personalization-recommendations-engine-a-getrecommendations-user-utility-that-filters-products-by-matching-the-user-s-skintype-and-or-skinconcerns-sorts-by-descending-rating-and-returns-the-top-6-results-display-the-results-in-the-shop-s-personalized-for-you-section-with-the-label-based-on-your-skintype-skin-concern-concerns",
+      "featureTitle": "Implement the personalization recommendations engine: a getRecommendations(user) utility that filters products by matching the user's skinType and/or skinConcerns, sorts by descending rating, and returns the top 6 results. Display the results in the Shop's 'Personalized for you' section with the label '✨ Based on your [skinType] skin & [concern] concerns'.",
+      "files": [
+        "frontend/src/screens/ShopScreen.tsx",
+        "frontend/src/utils/getRecommendations.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

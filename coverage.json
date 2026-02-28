@@ -1,0 +1,353 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-28T17:58:46.906Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 16,
+    "implemented": 16,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a Zustand-based global state management system with four stores persisted to localStorage: (1) userStore with fields: name, email, gender, ageRange, skinType, skinConcerns, routinePreference, glowPoints, streak, bestStreak, tier, totalRoutinesCompleted, hasCompletedOnboarding; (2) routineStore with todayMorningSteps, todayEveningSteps, history, currentStreak, bestStreak, and actions completeMorningStep(id), completeEveningStep(id), completeFullRoutine(type); (3) shopStore with products array, cart, wishlist, and actions addToCart, removeFromCart, toggleWishlist, checkout; (4) communityStore with posts array, leaderboard array, and likePost(id) action.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/stores/userStore.ts",
+          "frontend/src/stores/routineStore.ts",
+          "frontend/src/stores/shopStore.ts",
+          "frontend/src/stores/communityStore.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/stores/userStore.ts",
+          "frontend/src/stores/routineStore.ts",
+          "frontend/src/stores/shopStore.ts",
+          "frontend/src/stores/communityStore.ts"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Build the ProfileScreen at `/profile` with: (1) Profile header showing gradient avatar circle with initials, name, email, member since date, and edit profile button; (2) Stats grid — Total GlowPoints, Current Streak, Routines Completed, Products Reviewed; (3) Tier card showing current tier badge, points progress bar, and 'Next: [tier] at [X] points' label; (4) Achievements section with badge grid — 🔥 First Streak (7 days), 🌸 Full Bloom (30 days), ⭐ First Review, 🛍️ First Purchase, 👑 GlowPro Tier, 💎 Top Achiever — locked badges shown grayed out; (5) My Routines Summary with morning/evening completion rates and weekly chart; (6) Wishlist grid of saved products; (7) Settings section with notification preference toggles, privacy settings, 'Data Privacy' link, and a prominent 'We never sell your data 🔒' badge; (8) An accessible Privacy Policy sub-screen with full privacy policy text, data usage explanation, and GDPR/data rights section.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/ProfileScreen.tsx",
+          "frontend/src/screens/PrivacyPolicyScreen.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/ProfileScreen.tsx",
+          "frontend/src/screens/PrivacyPolicyScreen.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Implement the gamification logic: (1) GlowPoints awards — +10 for completing morning routine, +10 for completing evening routine, +5 bonus for completing both in the same day, +50 bonus for reaching a 7-day streak, +15 for writing a review, +25 for first purchase; (2) Tier calculation — Starter: 0–499, GlowUp: 500–1499, GlowPro: 1500+; (3) Flower state function — streak 0 (previously active): 'withered', streak 1–2: 'seed', streak 3–6: 'bud', streak 7+: 'bloom'; (4) Floating '+10' text animation appearing near the GlowPoints badge when points are earned; (5) Streak counter with number-roll animation on increment.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/gamification.ts",
+          "frontend/src/components/FloatingPointsText.tsx",
+          "frontend/src/components/StreakCounter.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/gamification.ts"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Implement global UI effects: (1) Confetti animation using CSS particle animation with 20–30 particles in lavender, pink, mint green, and gold falling from top over 1.5 seconds, triggered on routine completion and achievement unlock; (2) Web Audio API chime on routine completion using the provided oscillator code (880Hz sine wave, 0.8s decay); (3) In-app toast notification system with slide-in-from-top animation, displaying messages: '🌸 Time for your morning routine!', '🔥 Don't break your X-day streak!', '💧 Your flower needs water — log today's routine', '✨ New personalized products just for you', '🏆 You're close to GlowPro tier!'.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Confetti.tsx",
+          "frontend/src/utils/audioChime.ts",
+          "frontend/src/components/Toast.tsx",
+          "frontend/src/hooks/useToast.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Confetti.tsx",
+          "frontend/src/utils/audioChime.ts",
+          "frontend/src/components/Toast.tsx",
+          "frontend/src/hooks/useToast.ts"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Implement all page and UI animations: (1) Page transitions — fade + slide-up between routes; (2) Onboarding step transitions — slide in/out horizontally; (3) Card hover effect — slight scale-up with elevated shadow; (4) Tab switch transition — smooth fade; (5) Cart badge bounce animation when item is added; (6) Completion checkmark draw animation on routine step completion; (7) Flower state morphing — smooth transition when state changes.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/styles/animations.css",
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Apply the full Luminique design system consistently across all screens: (1) Background gradient: beige #F5E6D6 to lavender #E8DFF5; (2) Primary purple #7B4BB7, deep violet #5B2D91, soft lavender #BCA6E6, mint green #7ED1B2, light peach #EBCBB3; (3) Text dark #111111, text muted #6B6B8A; (4) Glass morphism cards with rgba(255,255,255,0.75) background and backdrop-blur; (5) Poppins font (weights 300–700) loaded from Google Fonts; (6) Max-width 430px mobile container centered on desktop with a subtle phone frame/shadow; (7) Bottom safe area padding for the tab bar; (8) Minimum 44px touch targets for all interactive elements; (9) No horizontal scroll on any screen.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/MobileContainer.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Create an inline SVG lotus logo component (Logo component) with: a rounded square container using a warm beige gradient (#F2D8C2 → #EBCBB3); a symmetrical 5-petal lotus flower using a deep violet (#5B2D91) to lavender (#BCA6E6) gradient; a central circular core with lavender highlight; two mint green (#7ED1B2) leaves beneath the flower; and a 'luminique' wordmark in Poppins medium weight, dark charcoal #111111.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Logo.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Logo.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Implement the personalization recommendations engine: a getRecommendations(user) utility that filters products by matching the user's skinType and/or skinConcerns, sorts by descending rating, and returns the top 6 results. Display the results in the Shop's 'Personalized for you' section with the label '✨ Based on your [skinType] skin & [concern] concerns'.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/getRecommendations.ts",
+          "frontend/src/screens/ShopScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/getRecommendations.ts",
+          "frontend/src/screens/ShopScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement React Router navigation with the following routes: `/` (SplashScreen), `/onboarding` (OnboardingScreen), `/home` (HomeScreen), `/routine` (RoutineScreen), `/shop` (ShopScreen), `/community` (CommunityScreen), `/profile` (ProfileScreen). New users (no localStorage profile) are sent to `/onboarding` after splash; returning users go directly to `/home`.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/BottomTabBar.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/BottomTabBar.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Build a SplashScreen at `/` with: an animated Luminique lotus SVG logo (scale + fade-in animation), the tagline 'Glow. Grow. Bloom.', an animated beige-to-lavender gradient background, and auto-redirect logic after 2.5 seconds.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/SplashScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/SplashScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Build a multi-step OnboardingScreen at `/onboarding` with 8 steps and a progress indicator. Steps: (1) Welcome with logo and 'Get Started' CTA; (2) Gender selection cards — Male/Female/Others; (3) Age range cards — 13–19, 20–29, 30–39, 40–49, 50+; (4) Skin type cards with icons — Normal, Oily, Dry, Combination, Sensitive with short descriptions; (5) Multi-select skin concern pills — Acne, Pigmentation, Dullness, Wrinkles, Dark Circles, Uneven Texture, Redness, Large Pores; (6) Routine preference cards — 🌅 Morning, 🌙 Evening, ✨ Both; (7) Mock AI skin scan with camera frame UI, 'Analyzing your skin...' progress animation, mock result text ('Your skin appears Combination with mild Pigmentation'), and skip option; (8) Profile creation with name input, email input, 'Continue with Email' button, mock 'Continue with Google' button, and privacy note 'We never sell your data 🔒'. Each step slides in/out with animation. All collected data is saved to userStore and localStorage.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/OnboardingScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/OnboardingScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Build the HomeScreen at `/home` with: (1) A time-aware greeting header ('Good morning/afternoon/evening, [Name] ✨') with a GlowPoints badge with flame icon top-right; (2) A Flower Visual State Engine showing an animated SVG/CSS flower with four states based on streak — Seed (0–2 days, 🌱, 'Your journey begins...'), Bud (3–6 days, 🌿, 'Growing beautifully!'), Bloom (7+ days, 🌸, 'You're blooming! Keep glowing!'), Withered (missed, 🥀, 'Your flower needs care...') — with smooth CSS transitions and a pulsing glow animation on Bloom; (3) A streak counter showing the streak number with fire emoji, 'Day streak' label, and a 7-day calendar strip with filled/empty circles; (4) Quick action cards for 'Complete Morning Routine' and 'Complete Evening Routine' with one-tap completion, checkmark + confetti animation, and Web Audio API chime; (5) A Today's Tip card with rotating skincare tips based on user's skin type; (6) A GlowPoints Summary card showing current points, tier badge, and progress bar to next tier.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/HomeScreen.tsx",
+          "frontend/src/components/GlowPointsBadge.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/HomeScreen.tsx",
+          "frontend/src/components/GlowPointsBadge.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Create the FlowerEngine component with four animated SVG/CSS states: Seed (rounded mound, earth-brown tones), Bud (stem with small closed bud, soft green, gentle-sway CSS keyframe animation rotating -2deg to 2deg), Bloom (full lotus flower in brand purples/lavenders, pulse-glow keyframe animation scaling 1→1.05→1 with glow shadow), and Withered (drooping flower, desaturated, droop animation with translateY + opacity reduction). Transitions between states must be smooth.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/FlowerEngine.tsx",
+          "frontend/src/utils/getFlowerState.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/FlowerEngine.tsx",
+          "frontend/src/utils/getFlowerState.ts"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Build the RoutineScreen at `/routine` with: (1) A full month calendar view with dots below dates indicating morning ☀️ / evening 🌙 completion, current day highlighted; (2) Morning routine section with steps — Cleanser → Toner → Serum → Moisturizer → SPF — each with a checkbox, step name, tap-to-complete interaction, and overall completion percentage; (3) Evening routine section with steps — Makeup Remover → Cleanser → Toner → Serum → Night Cream — same checkbox system; (4) A Streak Stats card showing current streak, best streak, total days completed, and a 7-bar weekly completion chart; (5) A log history list showing last 7 entries.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/RoutineScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/RoutineScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Build the ShopScreen at `/shop` with: (1) Header with 'Glow Shop' title, cart icon with item count badge, and wishlist icon; (2) Filter chips — All, For My Skin, Serums, Cleansers, Moisturizers, SPF, Toners — plus secondary skin type filter pills; (3) '✨ Personalized for you' featured banner with 2–3 recommended product cards based on user's skin type; (4) A 2-column product grid with all 12 products (CeraVe Hydrating Cleanser ₹799 4.5★, Minimalist Niacinamide 10% ₹599 4.7★, Dot & Key Vitamin C Serum ₹1299 4.4★, Plum Green Tea Moisturizer ₹649 4.3★, Biotique Bio Coconut SPF 40 ₹399 4.2★, The Ordinary Retinol ₹1499 4.6★, Lakme Sun Expert SPF 50 ₹349 4.1★, Neutrogena Hydro Boost ₹1199 4.8★, Mamaearth Turmeric Face Wash ₹299 4.2★, WOW Skin 10-in-1 Serum ₹899 4.4★, Kama Ayurveda Rose Water ₹549 4.6★, Forest Essentials Night Cream ₹2199 4.7★); each card has gradient placeholder image, name, price, star rating, skin type badge, heart wishlist toggle, 'Add to Cart' button, and conditional BEST SELLER / 20% OFF / ✨ Recommended badges; (5) Product detail modal with full info, ingredient highlights, 3 mock reviews, quantity selector, add to cart and wishlist; (6) Slide-up cart drawer with items list, quantity controls, subtotal, 'Apply GlowPoints' discount toggle, and 'Proceed to Checkout'; (7) Checkout modal with mock address form, payment method selection (Card/UPI/COD), order summary, and 'Place Order' button triggering success animation with confetti.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/ShopScreen.tsx",
+          "frontend/src/data/products.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/ShopScreen.tsx",
+          "frontend/src/data/products.ts"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Build the CommunityScreen at `/community` with: (1) Header with 'Glow Community' title and a compose/post button; (2) '🔥 Trending Products' horizontal scroll section; (3) A feed with 5 pre-seeded mock posts — @priya_glows (GlowPro, 🔥28 days, 127 likes), @skincare_sid (GlowUp, 🔥12 days, 89 likes), @ayesha.beauty (GlowPro, 🔥45 days, 234 likes), @rohit_skincare (Starter, 🔥7 days, 45 likes), @divya.glow (GlowUp, 🔥19 days, 156 likes) — each card showing gradient avatar with initials, username, streak badge, tier badge, post content, like toggle with animation, and comment count; (4) An 'Achievement Sharing' card for generating a shareable achievement card; (5) A '🏆 Top GlowAchievers This Week' leaderboard showing top 5 users with streak and points, with the current user's rank highlighted.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/screens/CommunityScreen.tsx",
+          "frontend/src/data/mockPosts.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/screens/CommunityScreen.tsx",
+          "frontend/src/data/mockPosts.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/background-pattern.dim_430x932.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Confetti.tsx",
+    "frontend/src/components/FlowerEngine.tsx",
+    "frontend/src/components/GlowPointsBadge.tsx",
+    "frontend/src/components/Logo.tsx",
+    "frontend/src/components/Toast.tsx",
+    "frontend/src/components/layout/BottomTabBar.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/data/mockPosts.ts",
+    "frontend/src/data/products.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useToast.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/screens/CommunityScreen.tsx",
+    "frontend/src/screens/HomeScreen.tsx",
+    "frontend/src/screens/OnboardingScreen.tsx",
+    "frontend/src/screens/PrivacyPolicyScreen.tsx",
+    "frontend/src/screens/ProfileScreen.tsx",
+    "frontend/src/screens/RoutineScreen.tsx",
+    "frontend/src/screens/ShopScreen.tsx",
+    "frontend/src/screens/SplashScreen.tsx",
+    "frontend/src/stores/communityStore.ts",
+    "frontend/src/stores/routineStore.ts",
+    "frontend/src/stores/shopStore.ts",
+    "frontend/src/stores/userStore.ts",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/audioChime.ts",
+    "frontend/src/utils/gamification.ts",
+    "frontend/src/utils/getFlowerState.ts",
+    "frontend/src/utils/getRecommendations.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

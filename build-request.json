@@ -1,0 +1,432 @@
+{
+  "kind": "build_request",
+  "title": "Luminique — Gamified Skincare Self-Care Ecosystem (Full Build)",
+  "projectName": "Luminique",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a Zustand-based global state management system with four stores persisted to localStorage: (1) userStore with fields: name, email, gender, ageRange, skinType, skinConcerns, routinePreference, glowPoints, streak, bestStreak, tier, totalRoutinesCompleted, hasCompletedOnboarding; (2) routineStore with todayMorningSteps, todayEveningSteps, history, currentStreak, bestStreak, and actions completeMorningStep(id), completeEveningStep(id), completeFullRoutine(type); (3) shopStore with products array, cart, wishlist, and actions addToCart, removeFromCart, toggleWishlist, checkout; (4) communityStore with posts array, leaderboard array, and likePost(id) action.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a comprehensive store",
+          "userStore",
+          "routineStore",
+          "shopStore",
+          "communityStore",
+          "Store all data in Zustand store + localStorage"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All four stores are initialized with default data and hydrated from localStorage on app load",
+        "State changes persist across page refreshes",
+        "GlowPoints update in real-time across all screens when routines are completed"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement React Router navigation with the following routes: `/` (SplashScreen), `/onboarding` (OnboardingScreen), `/home` (HomeScreen), `/routine` (RoutineScreen), `/shop` (ShopScreen), `/community` (CommunityScreen), `/profile` (ProfileScreen). New users (no localStorage profile) are sent to `/onboarding` after splash; returning users go directly to `/home`.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Single Page App with routing",
+          "Auto-redirect to onboarding after 2.5s",
+          "Returning users (localStorage has profile) should go straight to home"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Splash screen displays for 2.5 seconds then redirects appropriately",
+        "New users are routed to /onboarding; returning users to /home",
+        "All 7 routes render their respective screens without errors"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a SplashScreen at `/` with: an animated Luminique lotus SVG logo (scale + fade-in animation), the tagline 'Glow. Grow. Bloom.', an animated beige-to-lavender gradient background, and auto-redirect logic after 2.5 seconds.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "SPLASH SCREEN",
+          "Animated Luminique lotus logo (scale + fade in)",
+          "Tagline: \"Glow. Grow. Bloom.\"",
+          "Auto-redirect to onboarding after 2.5s"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Logo animates in with scale and fade on load",
+        "Tagline is visible below the logo",
+        "Redirects to /onboarding (new user) or /home (returning user) after 2.5s"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build a multi-step OnboardingScreen at `/onboarding` with 8 steps and a progress indicator. Steps: (1) Welcome with logo and 'Get Started' CTA; (2) Gender selection cards — Male/Female/Others; (3) Age range cards — 13–19, 20–29, 30–39, 40–49, 50+; (4) Skin type cards with icons — Normal, Oily, Dry, Combination, Sensitive with short descriptions; (5) Multi-select skin concern pills — Acne, Pigmentation, Dullness, Wrinkles, Dark Circles, Uneven Texture, Redness, Large Pores; (6) Routine preference cards — 🌅 Morning, 🌙 Evening, ✨ Both; (7) Mock AI skin scan with camera frame UI, 'Analyzing your skin...' progress animation, mock result text ('Your skin appears Combination with mild Pigmentation'), and skip option; (8) Profile creation with name input, email input, 'Continue with Email' button, mock 'Continue with Google' button, and privacy note 'We never sell your data 🔒'. Each step slides in/out with animation. All collected data is saved to userStore and localStorage.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Multi-step wizard with progress indicator",
+          "Step 1 - Welcome",
+          "Step 2 - Gender Selection",
+          "Step 3 - Age Range",
+          "Step 4 - Skin Type",
+          "Step 5 - Skin Concerns",
+          "Step 6 - Routine Preference",
+          "Step 7 - AI Skin Scan (Mock)",
+          "Step 8 - Profile Creation"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Progress indicator shows current step out of 8",
+        "Selections are visually highlighted with purple on tap",
+        "Multi-select works correctly for skin concerns",
+        "Skin scan step shows animated progress bar and mock result",
+        "Step 8 form validates name and email before allowing continue",
+        "Completed onboarding sets hasCompletedOnboarding: true and navigates to /home",
+        "Onboarding data persists in localStorage"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build the HomeScreen at `/home` with: (1) A time-aware greeting header ('Good morning/afternoon/evening, [Name] ✨') with a GlowPoints badge with flame icon top-right; (2) A Flower Visual State Engine showing an animated SVG/CSS flower with four states based on streak — Seed (0–2 days, 🌱, 'Your journey begins...'), Bud (3–6 days, 🌿, 'Growing beautifully!'), Bloom (7+ days, 🌸, 'You're blooming! Keep glowing!'), Withered (missed, 🥀, 'Your flower needs care...') — with smooth CSS transitions and a pulsing glow animation on Bloom; (3) A streak counter showing the streak number with fire emoji, 'Day streak' label, and a 7-day calendar strip with filled/empty circles; (4) Quick action cards for 'Complete Morning Routine' and 'Complete Evening Routine' with one-tap completion, checkmark + confetti animation, and Web Audio API chime; (5) A Today's Tip card with rotating skincare tips based on user's skin type; (6) A GlowPoints Summary card showing current points, tier badge, and progress bar to next tier.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "HOME SCREEN",
+          "Good morning, [Name] ✨ greeting (time-aware)",
+          "Flower Visual State Engine",
+          "Streak Counter",
+          "Quick Action Cards",
+          "Today's Tip Card",
+          "GlowPoints Summary"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Greeting changes based on time of day",
+        "Flower state matches the current streak value from routineStore",
+        "Bloom state shows pulsing glow animation",
+        "Completing a routine triggers confetti effect, chime sound, and updates GlowPoints",
+        "7-day calendar strip reflects actual routine history",
+        "GlowPoints badge updates in real time after routine completion",
+        "Tip card shows a tip relevant to the user's skin type"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create the FlowerEngine component with four animated SVG/CSS states: Seed (rounded mound, earth-brown tones), Bud (stem with small closed bud, soft green, gentle-sway CSS keyframe animation rotating -2deg to 2deg), Bloom (full lotus flower in brand purples/lavenders, pulse-glow keyframe animation scaling 1→1.05→1 with glow shadow), and Withered (drooping flower, desaturated, droop animation with translateY + opacity reduction). Transitions between states must be smooth.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "FLOWER ANIMATION COMPONENT",
+          "Seed State",
+          "Bud State",
+          "Bloom State",
+          "Withered State",
+          "pulse-glow",
+          "gentle-sway",
+          "droop"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All four flower states render correctly and are visually distinct",
+        "Bud state sways gently using CSS keyframes",
+        "Bloom state pulses with a soft glow",
+        "Withered state droops with reduced opacity",
+        "State transitions animate smoothly without jarring jumps"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Build the RoutineScreen at `/routine` with: (1) A full month calendar view with dots below dates indicating morning ☀️ / evening 🌙 completion, current day highlighted; (2) Morning routine section with steps — Cleanser → Toner → Serum → Moisturizer → SPF — each with a checkbox, step name, tap-to-complete interaction, and overall completion percentage; (3) Evening routine section with steps — Makeup Remover → Cleanser → Toner → Serum → Night Cream — same checkbox system; (4) A Streak Stats card showing current streak, best streak, total days completed, and a 7-bar weekly completion chart; (5) A log history list showing last 7 entries.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ROUTINE TRACKER",
+          "Calendar View",
+          "Routine Log",
+          "Morning Routine section",
+          "Evening Routine section",
+          "Streak Stats Card",
+          "Log History"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Calendar shows correct dots for morning/evening completions from routineStore history",
+        "Checking a step updates completion percentage in real time",
+        "Completing all steps in a routine triggers GlowPoints award and updates streak",
+        "Weekly bar chart reflects actual completion data",
+        "Log history shows the 7 most recent dated entries"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Build the ShopScreen at `/shop` with: (1) Header with 'Glow Shop' title, cart icon with item count badge, and wishlist icon; (2) Filter chips — All, For My Skin, Serums, Cleansers, Moisturizers, SPF, Toners — plus secondary skin type filter pills; (3) '✨ Personalized for you' featured banner with 2–3 recommended product cards based on user's skin type; (4) A 2-column product grid with all 12 products (CeraVe Hydrating Cleanser ₹799 4.5★, Minimalist Niacinamide 10% ₹599 4.7★, Dot & Key Vitamin C Serum ₹1299 4.4★, Plum Green Tea Moisturizer ₹649 4.3★, Biotique Bio Coconut SPF 40 ₹399 4.2★, The Ordinary Retinol ₹1499 4.6★, Lakme Sun Expert SPF 50 ₹349 4.1★, Neutrogena Hydro Boost ₹1199 4.8★, Mamaearth Turmeric Face Wash ₹299 4.2★, WOW Skin 10-in-1 Serum ₹899 4.4★, Kama Ayurveda Rose Water ₹549 4.6★, Forest Essentials Night Cream ₹2199 4.7★); each card has gradient placeholder image, name, price, star rating, skin type badge, heart wishlist toggle, 'Add to Cart' button, and conditional BEST SELLER / 20% OFF / ✨ Recommended badges; (5) Product detail modal with full info, ingredient highlights, 3 mock reviews, quantity selector, add to cart and wishlist; (6) Slide-up cart drawer with items list, quantity controls, subtotal, 'Apply GlowPoints' discount toggle, and 'Proceed to Checkout'; (7) Checkout modal with mock address form, payment method selection (Card/UPI/COD), order summary, and 'Place Order' button triggering success animation with confetti.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "IN-APP SHOP",
+          "Product Grid (2 columns)",
+          "Each Product Card",
+          "Product Detail Modal",
+          "Cart",
+          "Checkout Modal"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Filter chips correctly filter the product grid",
+        "Personalized recommendations show products matching user's skinType and skinConcerns",
+        "Wishlist toggle persists via shopStore and shows filled heart when wishlisted",
+        "Cart badge bounces and updates count when item is added",
+        "Cart drawer slides up from bottom and shows correct totals",
+        "Applying GlowPoints shows a discount on the subtotal",
+        "Successful checkout shows confetti, awards +25 GlowPoints first purchase, and clears cart"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Build the CommunityScreen at `/community` with: (1) Header with 'Glow Community' title and a compose/post button; (2) '🔥 Trending Products' horizontal scroll section; (3) A feed with 5 pre-seeded mock posts — @priya_glows (GlowPro, 🔥28 days, 127 likes), @skincare_sid (GlowUp, 🔥12 days, 89 likes), @ayesha.beauty (GlowPro, 🔥45 days, 234 likes), @rohit_skincare (Starter, 🔥7 days, 45 likes), @divya.glow (GlowUp, 🔥19 days, 156 likes) — each card showing gradient avatar with initials, username, streak badge, tier badge, post content, like toggle with animation, and comment count; (4) An 'Achievement Sharing' card for generating a shareable achievement card; (5) A '🏆 Top GlowAchievers This Week' leaderboard showing top 5 users with streak and points, with the current user's rank highlighted.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "COMMUNITY",
+          "Feed Posts",
+          "Trending Section",
+          "Achievement Sharing",
+          "Leaderboard Section"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 5 mock posts render correctly with accurate data",
+        "Like button toggles heart animation and updates like count via communityStore",
+        "Leaderboard correctly highlights the current user's entry",
+        "Trending products horizontal scroll works without overflow issues"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Build the ProfileScreen at `/profile` with: (1) Profile header showing gradient avatar circle with initials, name, email, member since date, and edit profile button; (2) Stats grid — Total GlowPoints, Current Streak, Routines Completed, Products Reviewed; (3) Tier card showing current tier badge, points progress bar, and 'Next: [tier] at [X] points' label; (4) Achievements section with badge grid — 🔥 First Streak (7 days), 🌸 Full Bloom (30 days), ⭐ First Review, 🛍️ First Purchase, 👑 GlowPro Tier, 💎 Top Achiever — locked badges shown grayed out; (5) My Routines Summary with morning/evening completion rates and weekly chart; (6) Wishlist grid of saved products; (7) Settings section with notification preference toggles, privacy settings, 'Data Privacy' link, and a prominent 'We never sell your data 🔒' badge; (8) An accessible Privacy Policy sub-screen with full privacy policy text, data usage explanation, and GDPR/data rights section.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "PROFILE",
+          "Stats Grid",
+          "Tier Card",
+          "Achievements Section",
+          "My Routines Summary",
+          "Wishlist",
+          "Settings Section",
+          "Privacy Policy Screen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All stats reflect real-time data from Zustand stores",
+        "Unlocked achievements show color badges; locked ones are visually grayed out",
+        "Tier progress bar correctly reflects distance to next tier threshold",
+        "Wishlist grid matches items toggled in ShopScreen",
+        "Privacy Policy screen is accessible via the Data Privacy link in Settings"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Implement the gamification logic: (1) GlowPoints awards — +10 for completing morning routine, +10 for completing evening routine, +5 bonus for completing both in the same day, +50 bonus for reaching a 7-day streak, +15 for writing a review, +25 for first purchase; (2) Tier calculation — Starter: 0–499, GlowUp: 500–1499, GlowPro: 1500+; (3) Flower state function — streak 0 (previously active): 'withered', streak 1–2: 'seed', streak 3–6: 'bud', streak 7+: 'bloom'; (4) Floating '+10' text animation appearing near the GlowPoints badge when points are earned; (5) Streak counter with number-roll animation on increment.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "GAMIFICATION LOGIC",
+          "GlowPoints Rules",
+          "Tier Calculation",
+          "getFlowerState",
+          "Points: increment animation (+10 floating text)",
+          "Streak counter: number roll animation"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All point awards fire correctly at the right triggers",
+        "Tier badge updates automatically when point thresholds are crossed",
+        "Flower state changes correctly based on streak value",
+        "Floating point text appears and fades on point award",
+        "Streak number animates with a roll effect on increment"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Implement global UI effects: (1) Confetti animation using CSS particle animation with 20–30 particles in lavender, pink, mint green, and gold falling from top over 1.5 seconds, triggered on routine completion and achievement unlock; (2) Web Audio API chime on routine completion using the provided oscillator code (880Hz sine wave, 0.8s decay); (3) In-app toast notification system with slide-in-from-top animation, displaying messages: '🌸 Time for your morning routine!', '🔥 Don't break your X-day streak!', '💧 Your flower needs water — log today's routine', '✨ New personalized products just for you', '🏆 You're close to GlowPro tier!'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "CONFETTI ANIMATION",
+          "WEB AUDIO - CHIME EFFECT",
+          "NOTIFICATION SYSTEM (UI Mock)",
+          "20-30 particles fall from top",
+          "1.5 second duration"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Confetti triggers and plays correctly on routine completion",
+        "Chime plays on routine completion without errors (handles AudioContext user gesture requirement)",
+        "Toast notifications slide in from top and auto-dismiss after ~3 seconds",
+        "Toast messages use the correct contextual text"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Implement all page and UI animations: (1) Page transitions — fade + slide-up between routes; (2) Onboarding step transitions — slide in/out horizontally; (3) Card hover effect — slight scale-up with elevated shadow; (4) Tab switch transition — smooth fade; (5) Cart badge bounce animation when item is added; (6) Completion checkmark draw animation on routine step completion; (7) Flower state morphing — smooth transition when state changes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ANIMATIONS REQUIRED",
+          "Page transitions: fade + slide up",
+          "Onboarding steps: slide in/out",
+          "Card hover: slight scale + shadow",
+          "Tab switch: smooth transition",
+          "Cart badge: bounce on add",
+          "Completion: confetti + checkmark draw"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigating between routes shows a fade + slide-up transition",
+        "Onboarding steps slide horizontally as user progresses",
+        "Product cards scale slightly on hover/focus",
+        "Cart icon badge bounces when a new item is added",
+        "Routine step checkbox shows a drawing checkmark animation on completion"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Apply the full Luminique design system consistently across all screens: (1) Background gradient: beige #F5E6D6 to lavender #E8DFF5; (2) Primary purple #7B4BB7, deep violet #5B2D91, soft lavender #BCA6E6, mint green #7ED1B2, light peach #EBCBB3; (3) Text dark #111111, text muted #6B6B8A; (4) Glass morphism cards with rgba(255,255,255,0.75) background and backdrop-blur; (5) Poppins font (weights 300–700) loaded from Google Fonts; (6) Max-width 430px mobile container centered on desktop with a subtle phone frame/shadow; (7) Bottom safe area padding for the tab bar; (8) Minimum 44px touch targets for all interactive elements; (9) No horizontal scroll on any screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "BRAND & DESIGN SYSTEM",
+          "Color Palette",
+          "Typography: Use Google Fonts - Poppins",
+          "Max width: 430px (mobile frame)",
+          "Center on desktop with phone mockup frame",
+          "Bottom safe area for tab bar",
+          "Touch-friendly tap targets (min 44px)",
+          "Glass morphism cards"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All screens use the beige-to-lavender gradient background",
+        "Cards use glass morphism style with backdrop-blur",
+        "Poppins font is loaded and applied globally",
+        "Desktop view shows a centered 430px container with phone frame styling",
+        "No interactive element is smaller than 44px",
+        "No horizontal overflow on any screen"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Create an inline SVG lotus logo component (Logo component) with: a rounded square container using a warm beige gradient (#F2D8C2 → #EBCBB3); a symmetrical 5-petal lotus flower using a deep violet (#5B2D91) to lavender (#BCA6E6) gradient; a central circular core with lavender highlight; two mint green (#7ED1B2) leaves beneath the flower; and a 'luminique' wordmark in Poppins medium weight, dark charcoal #111111.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "LOGO DESIGN",
+          "Rounded square container with warm beige gradient",
+          "Symmetrical lotus flower: 5 petals",
+          "Two mint green (#7ED1B2) leaves beneath",
+          "\"luminique\" wordmark in Poppins medium"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Logo renders as a clean inline SVG with all described elements",
+        "Lotus petals show the violet-to-lavender gradient",
+        "Leaves are mint green",
+        "Wordmark uses Poppins medium weight in #111111",
+        "Logo is reusable as a component across screens"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Implement the personalization recommendations engine: a getRecommendations(user) utility that filters products by matching the user's skinType and/or skinConcerns, sorts by descending rating, and returns the top 6 results. Display the results in the Shop's 'Personalized for you' section with the label '✨ Based on your [skinType] skin & [concern] concerns'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "PERSONALIZATION ENGINE",
+          "getRecommendations(user)",
+          "Based on your Combination skin & Acne concerns"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Recommended products match the user's skin type or concerns",
+        "Results are sorted by rating descending",
+        "At most 6 products appear in the personalized section",
+        "Personalization label shows the user's actual skin type and primary concern"
+      ]
+    }
+  ],
+  "constraints": [
+    "All logic and state management must be frontend-only — no backend canister calls required for this app",
+    "No real camera access — AI skin scan step must be fully mocked",
+    "No real payment processing — checkout is a mock flow",
+    "No real Google OAuth — 'Continue with Google' is a mock button",
+    "App container must not exceed 430px width; center on desktop with phone frame",
+    "Do not use blue or blue-purple as primary colors — use the exact brand palette specified",
+    "Poppins must be loaded from Google Fonts"
+  ],
+  "nonGoals": [
+    "Real camera or ML-based skin analysis",
+    "Real payment gateway integration",
+    "Real Google/social authentication",
+    "Backend persistence — all state lives in localStorage via Zustand",
+    "Push notifications — only in-app toast mocks",
+    "SMS or email delivery",
+    "Multi-language support",
+    "Real product inventory or e-commerce backend"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Soft beige-to-lavender abstract gradient background with faint botanical petal silhouettes in muted lavender and peach tones, seamless texture (background-pattern.dim_430x932.png)"
+    ],
+    "edits": []
+  }
+}

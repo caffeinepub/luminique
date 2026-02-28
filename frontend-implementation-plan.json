@@ -1,0 +1,398 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Luminique — Gamified Skincare Self-Care Ecosystem (Full Build)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create Zustand-based global state management with four persisted stores",
+      "acceptanceCriteria": [
+        "All four stores are initialized with default data and hydrated from localStorage on app load",
+        "State changes persist across page refreshes",
+        "GlowPoints update in real-time across all screens when routines are completed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/stores/userStore.ts",
+          "operation": "create",
+          "description": "Create Zustand store for user profile data with fields: name, email, gender, ageRange, skinType, skinConcerns, routinePreference, glowPoints, streak, bestStreak, tier, totalRoutinesCompleted, hasCompletedOnboarding. Include actions to update profile, increment GlowPoints, update streak, and calculate tier. Persist to localStorage using Zustand persist middleware."
+        },
+        {
+          "path": "frontend/src/stores/routineStore.ts",
+          "operation": "create",
+          "description": "Create Zustand store for routine tracking with fields: todayMorningSteps, todayEveningSteps, history, currentStreak, bestStreak. Include actions: completeMorningStep(id), completeEveningStep(id), completeFullRoutine(type). Persist to localStorage using Zustand persist middleware."
+        },
+        {
+          "path": "frontend/src/stores/shopStore.ts",
+          "operation": "create",
+          "description": "Create Zustand store for shop data with fields: products array, cart, wishlist. Include actions: addToCart, removeFromCart, toggleWishlist, checkout. Persist to localStorage using Zustand persist middleware."
+        },
+        {
+          "path": "frontend/src/stores/communityStore.ts",
+          "operation": "create",
+          "description": "Create Zustand store for community data with fields: posts array, leaderboard array. Include actions: likePost(id). Persist to localStorage using Zustand persist middleware."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement React Router navigation with seven routes and conditional onboarding redirect",
+      "acceptanceCriteria": [
+        "Splash screen displays for 2.5 seconds then redirects appropriately",
+        "New users are routed to /onboarding; returning users to /home",
+        "All 7 routes render their respective screens without errors"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Set up React Router with routes: / (SplashScreen), /onboarding (OnboardingScreen), /home (HomeScreen), /routine (RoutineScreen), /shop (ShopScreen), /community (CommunityScreen), /profile (ProfileScreen). Import all screen components and configure routing."
+        },
+        {
+          "path": "frontend/src/components/layout/BottomTabBar.tsx",
+          "operation": "create",
+          "description": "Create a bottom tab navigation bar component with icons and labels for Home, Routine, Shop, Community, and Profile. Use React Router NavLink for navigation. Apply glass morphism styling and ensure minimum 44px touch targets. Position fixed at bottom with safe area padding."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build animated SplashScreen with logo, tagline, and auto-redirect",
+      "acceptanceCriteria": [
+        "Logo animates in with scale and fade on load",
+        "Tagline is visible below the logo",
+        "Redirects to /onboarding (new user) or /home (returning user) after 2.5s"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/SplashScreen.tsx",
+          "operation": "create",
+          "description": "Create SplashScreen component at route /. Display animated Luminique lotus logo using the Logo component with scale and fade-in CSS keyframe animations. Show tagline 'Glow. Grow. Bloom.' below logo. Apply beige-to-lavender gradient background. Implement useEffect hook with 2.5s timer that checks userStore.hasCompletedOnboarding and redirects to /home if true, otherwise /onboarding. Use React Router's useNavigate for programmatic navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build multi-step OnboardingScreen with eight steps, progress indicator, and data persistence",
+      "acceptanceCriteria": [
+        "Progress indicator shows current step out of 8",
+        "Selections are visually highlighted with purple on tap",
+        "Multi-select works correctly for skin concerns",
+        "Skin scan step shows animated progress bar and mock result",
+        "Step 8 form validates name and email before allowing continue",
+        "Completed onboarding sets hasCompletedOnboarding: true and navigates to /home",
+        "Onboarding data persists in localStorage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/OnboardingScreen.tsx",
+          "operation": "create",
+          "description": "Create OnboardingScreen component at route /onboarding with eight sequential steps: (1) Welcome with logo and 'Get Started' button; (2) Gender selection cards (Male/Female/Others); (3) Age range cards (13–19, 20–29, 30–39, 40–49, 50+); (4) Skin type cards with icons (Normal, Oily, Dry, Combination, Sensitive); (5) Multi-select skin concern pills (Acne, Pigmentation, Dullness, Wrinkles, Dark Circles, Uneven Texture, Redness, Large Pores); (6) Routine preference cards (Morning, Evening, Both); (7) Mock AI skin scan with camera frame UI, 'Analyzing...' progress animation, mock result, and skip option; (8) Profile creation form with name, email inputs, 'Continue with Email' button, mock 'Continue with Google' button, and privacy note. Use useState for current step and form data. Include progress indicator showing step X/8. Apply slide-in/out animations between steps. Save all data to userStore on completion and navigate to /home."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build HomeScreen with greeting, flower visual, streak counter, quick actions, tip card, and GlowPoints summary",
+      "acceptanceCriteria": [
+        "Greeting changes based on time of day",
+        "Flower state matches the current streak value from routineStore",
+        "Bloom state shows pulsing glow animation",
+        "Completing a routine triggers confetti effect, chime sound, and updates GlowPoints",
+        "7-day calendar strip reflects actual routine history",
+        "GlowPoints badge updates in real time after routine completion",
+        "Tip card shows a tip relevant to the user's skin type"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/HomeScreen.tsx",
+          "operation": "create",
+          "description": "Create HomeScreen component at route /home. Include: (1) Time-aware greeting header ('Good morning/afternoon/evening, [Name] ✨') using current time logic with GlowPoints badge top-right showing flame icon and points count from userStore; (2) FlowerEngine component showing animated flower state based on routineStore.currentStreak; (3) Streak counter displaying streak number with fire emoji, 'Day streak' label, and 7-day calendar strip with filled/empty circles from routineStore.history; (4) Quick action cards for 'Complete Morning Routine' and 'Complete Evening Routine' with one-tap completion triggering checkmark animation, confetti effect, Web Audio chime, GlowPoints award, and store updates; (5) Today's Tip card with rotating skincare tip based on userStore.skinType; (6) GlowPoints Summary card showing current points, tier badge, and progress bar to next tier threshold. Use the generated background pattern image as page background: frontend/public/assets/generated/background-pattern.dim_430x932.png."
+        },
+        {
+          "path": "frontend/src/components/GlowPointsBadge.tsx",
+          "operation": "create",
+          "description": "Create reusable GlowPointsBadge component displaying flame icon and current GlowPoints from userStore. Include floating '+X' text animation when points are earned. Use glass morphism card styling. Ensure component is reusable across HomeScreen header and ProfileScreen."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create FlowerEngine component with four animated SVG/CSS states",
+      "acceptanceCriteria": [
+        "All four flower states render correctly and are visually distinct",
+        "Bud state sways gently using CSS keyframes",
+        "Bloom state pulses with a soft glow",
+        "Withered state droops with reduced opacity",
+        "State transitions animate smoothly without jarring jumps"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FlowerEngine.tsx",
+          "operation": "create",
+          "description": "Create FlowerEngine component with four SVG/CSS animated states: (1) Seed (0–2 days): rounded mound shape in earth-brown tones; (2) Bud (3–6 days): stem with small closed bud in soft green with gentle-sway CSS keyframe animation rotating -2deg to 2deg; (3) Bloom (7+ days): full lotus flower in brand purples/lavenders with pulse-glow keyframe animation scaling 1→1.05→1 and glow shadow; (4) Withered (missed after active streak): drooping flower in desaturated tones with droop animation using translateY and opacity reduction. Accept streak prop and calculate state using getFlowerState utility. Apply smooth CSS transitions between state changes."
+        },
+        {
+          "path": "frontend/src/utils/getFlowerState.ts",
+          "operation": "create",
+          "description": "Create utility function getFlowerState(streak: number, previousStreak: number): 'seed' | 'bud' | 'bloom' | 'withered' that returns flower state based on streak value: 'withered' if streak is 0 and previousStreak > 0, 'seed' for 1–2 days, 'bud' for 3–6 days, 'bloom' for 7+ days."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Build RoutineScreen with calendar view, morning/evening sections, streak stats, and log history",
+      "acceptanceCriteria": [
+        "Calendar shows correct dots for morning/evening completions from routineStore history",
+        "Checking a step updates completion percentage in real time",
+        "Completing all steps in a routine triggers GlowPoints award and updates streak",
+        "Weekly bar chart reflects actual completion data",
+        "Log history shows the 7 most recent dated entries"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/RoutineScreen.tsx",
+          "operation": "create",
+          "description": "Create RoutineScreen component at route /routine. Include: (1) Full month calendar view with dots below dates indicating morning ☀️ / evening 🌙 completion from routineStore.history, current day highlighted; (2) Morning routine section with steps (Cleanser → Toner → Serum → Moisturizer → SPF), each with checkbox, step name, tap-to-complete interaction, and overall completion percentage; (3) Evening routine section with steps (Makeup Remover → Cleanser → Toner → Serum → Night Cream) with same checkbox system; (4) Streak Stats card showing currentStreak, bestStreak, totalRoutinesCompleted from routineStore and userStore, plus 7-bar weekly completion chart; (5) Log history list showing last 7 entries from routineStore.history with dates and routine types. Completing all steps in a routine calls routineStore.completeFullRoutine, awards GlowPoints, updates streak, triggers confetti and chime. Use the generated background pattern image: frontend/public/assets/generated/background-pattern.dim_430x932.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Build ShopScreen with filters, personalized recommendations, product grid, detail modal, cart, and checkout",
+      "acceptanceCriteria": [
+        "Filter chips correctly filter the product grid",
+        "Personalized recommendations show products matching user's skinType and skinConcerns",
+        "Wishlist toggle persists via shopStore and shows filled heart when wishlisted",
+        "Cart badge bounces and updates count when item is added",
+        "Cart drawer slides up from bottom and shows correct totals",
+        "Applying GlowPoints shows a discount on the subtotal",
+        "Successful checkout shows confetti, awards +25 GlowPoints first purchase, and clears cart"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/ShopScreen.tsx",
+          "operation": "create",
+          "description": "Create ShopScreen component at route /shop. Include: (1) Header with 'Glow Shop' title, cart icon with item count badge from shopStore.cart, and wishlist icon; (2) Filter chips (All, For My Skin, Serums, Cleansers, Moisturizers, SPF, Toners) plus secondary skin type filter pills; (3) '✨ Personalized for you' featured banner showing 2–3 recommended product cards from getRecommendations(user); (4) 2-column product grid with all 12 products (CeraVe Hydrating Cleanser ₹799 4.5★, Minimalist Niacinamide 10% ₹599 4.7★, Dot & Key Vitamin C Serum ₹1299 4.4★, Plum Green Tea Moisturizer ₹649 4.3★, Biotique Bio Coconut SPF 40 ₹399 4.2★, The Ordinary Retinol ₹1499 4.6★, Lakme Sun Expert SPF 50 ₹349 4.1★, Neutrogena Hydro Boost ₹1199 4.8★, Mamaearth Turmeric Face Wash ₹299 4.2★, WOW Skin 10-in-1 Serum ₹899 4.4★, Kama Ayurveda Rose Water ₹549 4.6★, Forest Essentials Night Cream ₹2199 4.7★), each card with gradient placeholder image, name, price, star rating, skin type badge, heart wishlist toggle, 'Add to Cart' button, conditional badges (BEST SELLER/20% OFF/✨ Recommended); (5) Product detail modal with full info, ingredient highlights, 3 mock reviews, quantity selector, add to cart and wishlist actions; (6) Slide-up cart drawer with items list, quantity controls, subtotal, 'Apply GlowPoints' discount toggle, and 'Proceed to Checkout'; (7) Checkout modal with mock address form, payment method selection (Card/UPI/COD), order summary, 'Place Order' button triggering success animation with confetti, +25 GlowPoints award for first purchase, and cart clearing. Use the generated background pattern image: frontend/public/assets/generated/background-pattern.dim_430x932.png."
+        },
+        {
+          "path": "frontend/src/data/products.ts",
+          "operation": "create",
+          "description": "Create products data array with all 12 products, each including: id, name, price, rating, skinTypes array, concerns array, category, description, ingredients array, reviews array (3 mock reviews each), isBestSeller flag, discount percentage. Export as constant for use in ShopScreen."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Build CommunityScreen with trending section, feed, achievement sharing, and leaderboard",
+      "acceptanceCriteria": [
+        "All 5 mock posts render correctly with accurate data",
+        "Like button toggles heart animation and updates like count via communityStore",
+        "Leaderboard correctly highlights the current user's entry",
+        "Trending products horizontal scroll works without overflow issues"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/CommunityScreen.tsx",
+          "operation": "create",
+          "description": "Create CommunityScreen component at route /community. Include: (1) Header with 'Glow Community' title and compose/post button; (2) '🔥 Trending Products' horizontal scroll section; (3) Feed with 5 pre-seeded mock posts (@priya_glows GlowPro 🔥28 days 127 likes, @skincare_sid GlowUp 🔥12 days 89 likes, @ayesha.beauty GlowPro 🔥45 days 234 likes, @rohit_skincare Starter 🔥7 days 45 likes, @divya.glow GlowUp 🔥19 days 156 likes), each card showing gradient avatar with initials, username, streak badge, tier badge, post content, like toggle with heart animation using communityStore.likePost, and comment count; (4) 'Achievement Sharing' card for generating shareable achievement card; (5) '🏆 Top GlowAchievers This Week' leaderboard showing top 5 users with streak and points from communityStore.leaderboard, highlighting current user's rank. Use the generated background pattern image: frontend/public/assets/generated/background-pattern.dim_430x932.png."
+        },
+        {
+          "path": "frontend/src/data/mockPosts.ts",
+          "operation": "create",
+          "description": "Create mock posts data array with the 5 pre-seeded posts, each including: id, username, tier, streak, content, likes, comments count, timestamp. Export as constant for use in CommunityScreen and communityStore initialization."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Build ProfileScreen with stats, tier card, achievements, routines summary, wishlist, settings, and privacy policy",
+      "acceptanceCriteria": [
+        "All stats reflect real-time data from Zustand stores",
+        "Unlocked achievements show color badges; locked ones are visually grayed out",
+        "Tier progress bar correctly reflects distance to next tier threshold",
+        "Wishlist grid matches items toggled in ShopScreen",
+        "Privacy Policy screen is accessible via the Data Privacy link in Settings"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/screens/ProfileScreen.tsx",
+          "operation": "create",
+          "description": "Create ProfileScreen component at route /profile. Include: (1) Profile header with gradient avatar circle showing initials from userStore.name, name, email, member since date, and edit profile button; (2) Stats grid showing totalGlowPoints, currentStreak, totalRoutinesCompleted, and products reviewed count from userStore; (3) Tier card showing current tier badge, points progress bar to next tier threshold, and 'Next: [tier] at [X] points' label; (4) Achievements section with badge grid (🔥 First Streak 7 days, 🌸 Full Bloom 30 days, ⭐ First Review, 🛍️ First Purchase, 👑 GlowPro Tier, 💎 Top Achiever), locked badges grayed out based on achievement logic; (5) My Routines Summary with morning/evening completion rates and weekly chart from routineStore; (6) Wishlist grid showing products from shopStore.wishlist; (7) Settings section with notification preference toggles, privacy settings, 'Data Privacy' link navigating to /privacy, and prominent 'We never sell your data 🔒' badge. Use the generated background pattern image: frontend/public/assets/generated/background-pattern.dim_430x932.png."
+        },
+        {
+          "path": "frontend/src/screens/PrivacyPolicyScreen.tsx",
+          "operation": "create",
+          "description": "Create PrivacyPolicyScreen component at route /privacy accessible via ProfileScreen Settings. Display full privacy policy text with sections: Data Collection, Data Usage, User Rights, GDPR Compliance, Data Security, and Contact Information. Include back button to return to /profile. Apply consistent brand styling."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add /privacy route to React Router configuration, rendering PrivacyPolicyScreen component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Implement gamification logic for GlowPoints, tiers, flower states, and animations",
+      "acceptanceCriteria": [
+        "All point awards fire correctly at the right triggers",
+        "Tier badge updates automatically when point thresholds are crossed",
+        "Flower state changes correctly based on streak value",
+        "Floating point text appears and fades on point award",
+        "Streak number animates with a roll effect on increment"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/gamification.ts",
+          "operation": "create",
+          "description": "Create gamification utility functions: (1) awardGlowPoints(amount: number, reason: string) that increments userStore.glowPoints and triggers floating point animation; (2) calculateTier(points: number): 'Starter' | 'GlowUp' | 'GlowPro' based on thresholds (Starter: 0–499, GlowUp: 500–1499, GlowPro: 1500+); (3) getPointsForAction(action: string): number returning point values (+10 morning routine, +10 evening routine, +5 bonus both same day, +50 bonus 7-day streak, +15 review, +25 first purchase); (4) checkAchievementUnlock(user) that evaluates achievement conditions and returns newly unlocked achievements."
+        },
+        {
+          "path": "frontend/src/components/FloatingPointsText.tsx",
+          "operation": "create",
+          "description": "Create FloatingPointsText component that displays '+X' text with CSS keyframe animation floating upward and fading out over 1.5 seconds. Accept points amount as prop. Position absolutely near GlowPointsBadge when triggered."
+        },
+        {
+          "path": "frontend/src/components/StreakCounter.tsx",
+          "operation": "create",
+          "description": "Create StreakCounter component displaying streak number with fire emoji and 'Day streak' label. Implement number-roll animation on increment using CSS transform and transition. Accept streak value as prop from routineStore."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Implement global UI effects: confetti, chime, and toast notifications",
+      "acceptanceCriteria": [
+        "Confetti triggers and plays correctly on routine completion",
+        "Chime plays on routine completion without errors (handles AudioContext user gesture requirement)",
+        "Toast notifications slide in from top and auto-dismiss after ~3 seconds",
+        "Toast messages use the correct contextual text"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Confetti.tsx",
+          "operation": "create",
+          "description": "Create Confetti component using CSS particle animation with 20–30 particles in lavender, pink, mint green, and gold colors falling from top over 1.5 seconds. Use CSS keyframes for particle animation with random delays and horizontal drift. Accept trigger prop to control when animation plays. Render particles absolutely positioned across viewport width."
+        },
+        {
+          "path": "frontend/src/utils/audioChime.ts",
+          "operation": "create",
+          "description": "Create playChime utility function using Web Audio API. Generate 880Hz sine wave oscillator with 0.8s exponential decay envelope. Handle AudioContext user gesture requirement by creating context on first user interaction. Export playChime function for use on routine completion."
+        },
+        {
+          "path": "frontend/src/components/Toast.tsx",
+          "operation": "create",
+          "description": "Create Toast notification component with slide-in-from-top animation. Accept message and duration props. Auto-dismiss after duration (default 3 seconds). Apply glass morphism card styling. Support contextual messages: '🌸 Time for your morning routine!', '🔥 Don't break your X-day streak!', '💧 Your flower needs water — log today's routine', '✨ New personalized products just for you', '🏆 You're close to GlowPro tier!'."
+        },
+        {
+          "path": "frontend/src/hooks/useToast.ts",
+          "operation": "create",
+          "description": "Create useToast hook for managing toast notification queue. Return showToast function that adds toast to queue with message and optional duration. Handle rendering multiple toasts with stacking positions. Export hook for use across screens."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Implement all page and UI animations",
+      "acceptanceCriteria": [
+        "Navigating between routes shows a fade + slide-up transition",
+        "Onboarding steps slide horizontally as user progresses",
+        "Product cards scale slightly on hover/focus",
+        "Cart icon badge bounces when a new item is added",
+        "Routine step checkbox shows a drawing checkmark animation on completion"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/styles/animations.css",
+          "operation": "create",
+          "description": "Create animations.css file with CSS keyframe definitions for: (1) page-transition (fade + slide-up); (2) slide-in-left and slide-out-left for onboarding steps; (3) card-hover (scale-up with elevated shadow); (4) badge-bounce for cart icon; (5) checkmark-draw (SVG stroke-dashoffset animation); (6) pulse-glow for flower bloom; (7) gentle-sway for flower bud; (8) droop for withered flower; (9) float-up for floating points text; (10) confetti-fall for particle animation. Export all animations for use in components."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap Routes with page transition animations using fade + slide-up effect on route changes. Import animations.css globally. Apply transition classes to route container."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Import animations.css in main stylesheet. Ensure animation styles are available globally across all components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Apply Luminique design system consistently across all screens",
+      "acceptanceCriteria": [
+        "All screens use the beige-to-lavender gradient background",
+        "Cards use glass morphism style with backdrop-blur",
+        "Poppins font is loaded and applied globally",
+        "Desktop view shows a centered 430px container with phone frame styling",
+        "No interactive element is smaller than 44px",
+        "No horizontal overflow on any screen"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Apply Luminique design system globally: (1) Define CSS custom properties for color palette (beige #F5E6D6, lavender #E8DFF5, primary purple #7B4BB7, deep violet #5B2D91, soft lavender #BCA6E6, mint green #7ED1B2, light peach #EBCBB3, text dark #111111, text muted #6B6B8A); (2) Set body background to beige-to-lavender gradient; (3) Import Poppins font from Google Fonts with weights 300–700; (4) Apply Poppins as default font-family; (5) Add mobile container class with max-width 430px, centered on desktop with phone frame shadow; (6) Add bottom safe area padding utility class; (7) Ensure all interactive elements have min 44px touch target; (8) Add overflow-x: hidden to prevent horizontal scroll."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind configuration with Luminique brand colors, Poppins font family, glass morphism utilities (backdrop-blur, rgba backgrounds), and custom spacing for safe area padding. Add animation utilities for all defined keyframes. Set max-width constraint for mobile container."
+        },
+        {
+          "path": "frontend/src/components/layout/MobileContainer.tsx",
+          "operation": "create",
+          "description": "Create MobileContainer layout component that wraps all screens. Apply max-width 430px, center on desktop, and add subtle phone frame shadow. Use the generated background pattern image as background: frontend/public/assets/generated/background-pattern.dim_430x932.png. Export for use in App.tsx routing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with MobileContainer component to apply consistent mobile frame and background styling across all screens."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Create inline SVG lotus logo component",
+      "acceptanceCriteria": [
+        "Logo renders as a clean inline SVG with all described elements",
+        "Lotus petals show the violet-to-lavender gradient",
+        "Leaves are mint green",
+        "Wordmark uses Poppins medium weight in #111111",
+        "Logo is reusable as a component across screens"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Logo.tsx",
+          "operation": "create",
+          "description": "Create Logo component with inline SVG: (1) Rounded square container with warm beige gradient (#F2D8C2 → #EBCBB3); (2) Symmetrical 5-petal lotus flower using deep violet (#5B2D91) to lavender (#BCA6E6) gradient; (3) Central circular core with lavender highlight; (4) Two mint green (#7ED1B2) leaves beneath flower; (5) 'luminique' wordmark in Poppins medium weight, #111111. Accept optional size prop for scaling. Export for use in SplashScreen, OnboardingScreen, and other components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Implement personalization recommendations engine",
+      "acceptanceCriteria": [
+        "Recommended products match the user's skin type or concerns",
+        "Results are sorted by rating descending",
+        "At most 6 products appear in the personalized section",
+        "Personalization label shows the user's actual skin type and primary concern"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/getRecommendations.ts",
+          "operation": "create",
+          "description": "Create getRecommendations(user) utility function that: (1) Filters products array by matching user.skinType in product.skinTypes OR user.skinConcerns overlapping with product.concerns; (2) Sorts filtered results by rating descending; (3) Returns top 6 products. Export function for use in ShopScreen personalized section."
+        },
+        {
+          "path": "frontend/src/screens/ShopScreen.tsx",
+          "operation": "modify",
+          "description": "In ShopScreen, call getRecommendations(user) to populate '✨ Personalized for you' section. Display personalization label using template: '✨ Based on your [user.skinType] skin & [user.skinConcerns[0]] concerns'. Show recommended product cards in horizontal scroll or grid layout."
+        }
+      ]
+    }
+  ]
+}
